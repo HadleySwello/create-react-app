@@ -25,7 +25,7 @@ class InputForm extends Component {
         <Container>
           <Col></Col>
           <Col>
-            <Form>
+            <Form className="Form-Inputs">
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Name of Book</Form.Label>
                 <Form.Control
@@ -40,7 +40,7 @@ class InputForm extends Component {
               </Form.Group>
 
               <Button
-                variant="primary"
+                variant="secondary"
                 onClick={() => {
                   this.props.addNewBook(this.state.bookInput);
                 }}

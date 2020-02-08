@@ -26,19 +26,34 @@ class App extends PureComponent {
     this.setState({ listData: fullList, isListView: true });
   };
 
+  removeBook = bookName => {
+    const fullList = JSON.parse(JSON.stringify(this.state.listData));
+    const filteredList = fullList.filter(book => {
+      return book !== bookName;
+    });
+    this.setState({ listData: filteredList });
+  };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Your First React App: A List Builder</p>
-          <Button onClick={this.switchToListView}>View List</Button>
+          <h2>Your First React App: A List Builder</h2>
+          <Button variant="info" onClick={this.switchToListView}>
+            View List
+          </Button>
           <br />
-          <Button onClick={this.switchToFormView}>Add List Item</Button>
+          <Button variant="info" onClick={this.switchToFormView}>
+            Add List Item
+          </Button>
         </header>
         <div>
           {(this.state.isListView && (
-            <ListComponent listData={this.state.listData} />
+            <ListComponent
+              listData={this.state.listData}
+              removeBook={this.removeBook}
+            />
           )) || <InputForm addNewBook={this.addNewBook} />}
         </div>
         <br />

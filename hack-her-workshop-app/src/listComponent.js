@@ -2,18 +2,31 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
-import { Col, Container } from 'react-bootstrap';
+import { Button, Col, Container } from 'react-bootstrap';
 
 class ListComponent extends Component {
   static propTypes = {
     listData: PropTypes.array.isRequired,
+    removeBook: PropTypes.func.isRequired,
   };
 
   state = {};
 
   generateListBody = () => {
-    return this.props.listData.map((book, index) => {
-      return <li key={index}>{book}</li>;
+    return this.props.listData.map(book => {
+      return (
+        <li key={book}>
+          {book}
+          <Button
+            variant={'link'}
+            onClick={() => {
+              this.props.removeBook(book);
+            }}
+          >
+            X
+          </Button>
+        </li>
+      );
     });
   };
 
@@ -24,7 +37,7 @@ class ListComponent extends Component {
           <Col md={4}></Col>
           <Col>
             <h3>Books I've Read</h3>
-            <ul className="bookList">{this.generateListBody()}</ul>
+            <ol className="bookList">{this.generateListBody()}</ol>
           </Col>
           <Col md={4}></Col>
         </Container>
