@@ -41,7 +41,6 @@ class InputForm extends Component {
 
               <Button
                 variant="primary"
-                type="submit"
                 onClick={() => {
                   this.props.addNewBook(this.state.bookInput);
                 }}

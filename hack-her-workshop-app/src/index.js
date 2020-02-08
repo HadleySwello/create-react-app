@@ -3,11 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { AppContainer } from 'react-hot-loader';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const render = () => {
+  ReactDOM.render(
+    // Wrap App inside AppContainer
+    <AppContainer>
+      <App />
+    </AppContainer>,
+    document.getElementById('root')
+  );
+};
 
+// Do this once
+serviceWorker.register();
+
+// Render once
+render();
+
+// Webpack Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./App', () => {
+    render();
+  });
 }
 
 // If you want your app to work offline and load faster, you can change

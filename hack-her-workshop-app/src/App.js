@@ -23,7 +23,7 @@ class App extends PureComponent {
   addNewBook = bookName => {
     const fullList = JSON.parse(JSON.stringify(this.state.listData));
     fullList.push(bookName);
-    this.setState({ listData: fullList });
+    this.setState({ listData: fullList, isListView: true });
   };
 
   render() {
